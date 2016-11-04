@@ -22,6 +22,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# use the most basic form of adding react to rails atm: components are stored in the app/assets/javascript/components
+gem 'react-rails'
 
 # DATABASE GEMS
 # ancestry provides tree-interface for rails model objects
