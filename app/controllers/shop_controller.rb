@@ -1,4 +1,4 @@
-class ShopController < ActionController::Base
+class ShopController < ApplicationController
     def pagecontainer
         
     end
