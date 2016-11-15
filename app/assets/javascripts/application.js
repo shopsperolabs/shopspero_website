@@ -11,6 +11,12 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+//= require react
 //= require turbolinks
+//= require react_ujs
+//= require jquery_ujs
+//= require components
 //= require_tree .
+
+ready = function() {
+}
