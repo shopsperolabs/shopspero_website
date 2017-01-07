@@ -8,6 +8,7 @@
     /*background-color: yellow;*/
     }
 }
+
 .header {
     a{
         font-family: 'Josefin Slab', serif;
@@ -43,4 +44,25 @@
             color:gray;
         }
     }
+}
+
+.button {
+    z-index: 10;
+    cursor: pointer;
+    position: absolute;
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    border: solid #9E9E9E 1px;
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+    margin: 0.75em;
+    box-sizing: border-box;
+    &:hover {
+        color: gray;
+    }
+}
+.smtext {
+    font-size: 14px;
+    padding: 3px 8px 3px 8px;
+    border-radius: 3px;
 }

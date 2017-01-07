@@ -5,31 +5,46 @@ var ShopApp = React.createClass({
   },
   
   getInitialState: function() {
-    return { items: [{id: 1}, {id: 2}, {id:3}, {id:4}, {id:5}, {id:6}] };
+    return{ 
+            items: [{id: 1, name: "A"}, {id: 2, name: "B"}, {id:3, name: "C"}, 
+                    {id:4, name: "D"}, {id:10, name: "E"}, {id:6, name: "F"}],
+            id: 7, //this is a variable for the app w.o connection to rails, so that it knows what id is next to build
+            renderFormIds: []
+          };
   },
   
   getDefaultProps: function() {
     return { query: "Originals" };
   },
   
+  rendersForm: function(id) {
+    this.state.renderFormIds.push(id);
+  },
+  
   render: function() {
+    console.log(this)
     console.log(this.props.query);
     return (
       <div className='shopApp-container'>
         <div className='shopApp-header'> 
           <div className="navigation">
                 <ul>
-                  <a href="/shop">Originals</a>
-                  <a href="/shop">Women</a>
-                  <a href="/shop">Men</a>
-                  <a href="/shop">About</a>
+                  <a href="/shop/Original">Originals</a>
+                  <a href="/shop/Women">Women</a>
+                  <a href="/shop/Men">Men</a>
+                  <a href="/shop/About">About</a>
                 </ul>
             </div>
           <h3> {this.props.query} </h3> 
         </div>
         <ul className="items_list">
           {this.state.items.map(function (item) {
-            return (<li key={item.id}> <ItemBox id={item.id} /> </li>);
+            return (
+              <li key={item.id}> 
+                <ItemBox id={item.id} name={item.name} displayForm={this.rendersForm} /> 
+                <ItemForm id={item.id} name={item.name} 
+                  isRender={this.state.renderFormIds.indexOf(item.id) === -1}/>
+              </li>);
           }) }
         </ul>
         
@@ -39,13 +54,34 @@ var ShopApp = React.createClass({
 });
 
 var ItemBox = React.createClass({
-  
   render: function() {
+    // <div className='button smtext'> Delete </div> remove for now, probably going to have delete button in edit form
     return (
     <div className='item_container'>
-      <div className='item_desc'> <p> Item Name {this.props.id}; $100</p> </div>
+      <div className='button smtext' onClick={this.props.rendersForm(this.props.id)}> Edit </div>
+      <div className='item_desc'> <p> {this.props.id} Item Name {this.props.name}; $100</p> </div>
       <img src="http://www.myfamily.it/content/images/thumbs/0024087.jpeg"></img>
     </div>
     );
   }
+});
+
+var ItemForm = React.createClass({
+  
+  render: function() {
+    if (this.props.isRender) {
+      return (
+        <form className="item_formedit">
+          <label>
+            Name:
+            <input type="text" name="name" />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      );
+    } else {
+      return null;
+    }
+  }
+  
 });
