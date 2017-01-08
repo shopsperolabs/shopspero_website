@@ -18,11 +18,13 @@ var ShopApp = React.createClass({
   },
   
   rendersForm: function(id) {
-    this.state.renderFormIds.push(id);
+    this.setState(function(prevState, props) {
+      prevState.renderFormIds.push(id);
+      return prevState
+    });
   },
   
   render: function() {
-    console.log(this)
     console.log(this.props.query);
     return (
       <div className='shopApp-container'>
@@ -41,11 +43,11 @@ var ShopApp = React.createClass({
           {this.state.items.map(function (item) {
             return (
               <li key={item.id}> 
-                <ItemBox id={item.id} name={item.name} displayForm={this.rendersForm} /> 
+                <ItemBox id={item.id} name={item.name} rendersForm={this.rendersForm} /> 
                 <ItemForm id={item.id} name={item.name} 
-                  isRender={this.state.renderFormIds.indexOf(item.id) === -1}/>
+                  isRender={this.state.renderFormIds.indexOf(item.id) !== -1}/>
               </li>);
-          }) }
+          }.bind(this)) }
         </ul>
         
       </div>
@@ -57,8 +59,12 @@ var ItemBox = React.createClass({
   render: function() {
     // <div className='button smtext'> Delete </div> remove for now, probably going to have delete button in edit form
     return (
-    <div className='item_container'>
-      <div className='button smtext' onClick={this.props.rendersForm(this.props.id)}> Edit </div>
+    <div className='itembox_container'>
+      <div 
+        className='button smtext' 
+        onClick={function() {this.props.rendersForm(this.props.id);}.bind(this) }>
+        Edit
+      </div>
       <div className='item_desc'> <p> {this.props.id} Item Name {this.props.name}; $100</p> </div>
       <img src="http://www.myfamily.it/content/images/thumbs/0024087.jpeg"></img>
     </div>
