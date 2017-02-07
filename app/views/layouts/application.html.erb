@@ -8,13 +8,25 @@
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Josefin+Slab|Raleway" rel="stylesheet">
 </head>
 <body>
+    <% unless defined? @indexPage %>
     <div class="meta_container">
         <div class="header_container">
             <div class="header">
-                <a href="/shop/">SHOP SPERO</a>
+                <a class="header_link" href="/shop/">SHOP SPERO</a>
+                <% unless defined? @no_nav %>
+                    <div class="navigation">
+                        <ul>
+                            <%= link_to 'Originals', shop_page_path('Originals') %>
+                            <%= link_to 'Women', shop_page_path('Women') %>
+                            <%= link_to 'Men', shop_page_path('Men') %>
+                            <%= link_to 'About', shop_page_path('About') %>
+                        </ul>
+                    </div>
+                <% end %>
             </div>
         </div>
     </div>
+    <% end %>
     
 
 <%= yield %>
