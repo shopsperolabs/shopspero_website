@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }
+  get 'cart/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
   get 'shop/:query', to: 'shop#pagecontainer', as: 'shop_page'
   get 'shop', to: 'shop#pagecontainer', as: 'shop'
   
-  get 'cart' => 'shop#cart'
+  get 'cart' => 'cart#index'
 
   #   get 'products/:id' => 'catalog#view'
 
