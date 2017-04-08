@@ -28,6 +28,8 @@ gem 'react-rails'
 # DATABASE GEMS
 # ancestry provides tree-interface for rails model objects
 gem 'ancestry'
+# devise provides the rails application with the ability to store and validate logins
+gem 'devise'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -39,4 +39,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   config.action_view.raise_on_missing_translations = true
+  
+  # FROM DEVISE SET UP SUGGESTIONS
+  # Ensure you have defined default url options in your environments files. Here
+  # is an example of default_url_options appropriate for a development environment
+  # in config/environments/development.rb:
+  # NOTE: where to put this in production is a question
+  config.action_mailer.default_url_options = { host: 'https://shopspero-website-nicholaskchoi.c9users.io', port: 3000 }
 end
